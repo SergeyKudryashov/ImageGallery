@@ -7,21 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.squareup.picasso.Picasso;
 import com.ss.imagegallery.ImageContainer;
-import com.ss.imagegallery.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ImageGalleryAdapter extends PagerAdapter {
     private final float RATIO_SCALE = 0.3f;
 
     private LayoutInflater mInflater;
     private Context mContext;
-    ;
 
     public ImageGalleryAdapter(Context context) {
         mContext = context;
@@ -31,10 +25,9 @@ public class ImageGalleryAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         ImageView imageView = new ImageView(mContext);
-        /*Picasso.get()
+        Picasso.get()
                 .load(ImageContainer.getInstance().getImage(position))
-                .into(imageView);*/
-        imageView.setImageResource(R.drawable.image_1);
+                .into(imageView);
         imageView.setScaleY(1 - RATIO_SCALE);
 
         container.addView(imageView);

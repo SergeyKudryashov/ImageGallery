@@ -17,14 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if (savedInstanceState != null) {
-            mImageGalleryFragment = (ImageGalleryFragment) getSupportFragmentManager()
-                    .getFragment(savedInstanceState, SAVED_INSTANCE_STATE_KEY);
-        } else {
+        if (savedInstanceState == null) {
             mImageGalleryFragment = new ImageGalleryFragment();
             fragmentTransaction.add(R.id.fragment_container, mImageGalleryFragment).commit();
         }
-
 
     }
 

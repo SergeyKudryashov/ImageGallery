@@ -54,7 +54,7 @@ public class ImageGalleryFragment extends Fragment {
         if (savedInstanceState != null) {
             mViewPager.setCurrentItem(savedInstanceState.getInt("position"));
         }
-        addDotsIndicator(0);
+        addDotsIndicator(mViewPager.getCurrentItem());
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -72,13 +72,7 @@ public class ImageGalleryFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                if (position < DOTS_COUNT / 2) {
-                    addDotsIndicator(position);
-                } else if (position > ImageContainer.getInstance().size() - DOTS_COUNT / 2 - 1) {
-                    addDotsIndicator(DOTS_COUNT - (ImageContainer.getInstance().size() - position));
-                } else {
-                    addDotsIndicator(DOTS_COUNT / 2);
-                }
+                addDotsIndicator(position);
 
             }
 
@@ -110,9 +104,15 @@ public class ImageGalleryFragment extends Fragment {
 
             mDotsLayout.addView(mDots[i]);
         }
+        int i = DOTS_COUNT / 2;
+        if (position < DOTS_COUNT / 2) {
+            i = position;
+        } else if (position > ImageContainer.getInstance().size() - DOTS_COUNT / 2 - 1) {
+            i = DOTS_COUNT - (ImageContainer.getInstance().size() - position);
+        }
 
         if (mDots.length != 0)
-            mDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
+            mDots[i].setTextColor(getResources().getColor(R.color.colorWhite));
     }
 
     @Override
